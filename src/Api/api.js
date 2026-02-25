@@ -1,8 +1,8 @@
 import axios from "axios";
 
 const API = axios.create({
-  baseURL: "https://salon-backend-pdcn.vercel.app/api", 
-  withCredentials: true, 
+  baseURL: `${BASE_URL}/api`,
+  withCredentials: true,
 });
 
 export default API;
