@@ -65,7 +65,7 @@ const Hero = () => {
             Experience world-class grooming services tailored just for you.
             From classic haircuts to luxury styling, we redefine elegance and comfort.
           </motion.p>
-
+           <Link to="/book">
           <motion.button
             variants={fadeUp}
             whileHover={{ scale: 1.08 }}
@@ -74,7 +74,7 @@ const Hero = () => {
           >
             Book Your Appointment →
           </motion.button>
-
+          </Link>
         </motion.div>
       </div>
     </section>
