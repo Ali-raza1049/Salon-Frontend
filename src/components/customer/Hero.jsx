@@ -1,6 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import Heroimage from "../../assets/images/Heroimage.avif";
+import { Link } from "react-router-dom";
 
 const containerVariants = {
   hidden: {},
