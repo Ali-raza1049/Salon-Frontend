@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import { motion } from "framer-motion";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStaff } from "../../redux/slice/TeamSlice";
-import { BASE_URL } from "../../Api/utils";
 import { Link } from "react-router-dom";
 
 const containerVariants = {
@@ -56,17 +55,14 @@ const ExpertSection = () => {
           Our professional team is ready to transform your look with precision and style.
         </motion.p>
 
-        {/* Loading */}
         {loading && (
           <p className="text-gray-500 text-lg">Loading experts...</p>
         )}
 
-        {/* Error */}
         {error && (
           <p className="text-red-500 text-lg">{error}</p>
         )}
 
-        {/* Experts Grid */}
         {!loading && !error && (
           <motion.div
             variants={containerVariants}
@@ -87,7 +83,7 @@ const ExpertSection = () => {
                   <motion.img
                     src={
                       expert.image
-                        ? `${BASE_URL}${expert.image}`
+                        ? expert.image
                         : "https://via.placeholder.com/150"
                     }
                     alt={expert.name}
@@ -107,14 +103,12 @@ const ExpertSection = () => {
                   {expert.role}
                 </p>
 
-                {/* Rating (optional) */}
                 {expert.rating && (
                   <div className="flex justify-center mt-2 text-yellow-400 text-base sm:text-lg">
                     {"⭐".repeat(expert.rating)}
                   </div>
                 )}
 
-                {/* Book Now Button → Redirect to Booking Page */}
                 <Link to="/book">
                   <motion.button
                     whileTap={{ scale: 0.95 }}

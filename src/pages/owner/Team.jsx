@@ -1,4 +1,3 @@
-// src/pages/admin/Team.jsx
 import React, { useEffect, useState } from "react";
 import { Phone, Mail, Plus, Pencil, Trash2 } from "lucide-react";
 import { useDispatch, useSelector } from "react-redux";
@@ -9,8 +8,6 @@ import {
   updateStaff,
   deleteStaff,
 } from "../../redux/slice/TeamSlice";
-
-import { BASE_URL } from "../../Api/utils";
 
 const Team = () => {
   const dispatch = useDispatch();
@@ -26,7 +23,6 @@ const Team = () => {
     status: "Active",
   });
 
-  // Fetch staff
   useEffect(() => {
     dispatch(fetchStaff());
   }, [dispatch]);
@@ -74,6 +70,7 @@ const Team = () => {
       imageFile: null,
       status: "Active",
     });
+
     setEditingStaff(null);
     setShowModal(false);
   };
@@ -81,7 +78,6 @@ const Team = () => {
   return (
     <div className="min-h-screen bg-linear-to-br from-pink-50 via-white to-purple-50 p-4 md:p-8">
       
-      {/* Header */}
       <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-4 mb-8">
         <h2 className="text-2xl font-bold text-gray-800 text-center sm:text-left">
           Our Team
@@ -106,34 +102,31 @@ const Team = () => {
         </button>
       </div>
 
-      {/* Loading & Error */}
       {loading && (
         <p className="text-gray-500 text-center">Loading staff...</p>
       )}
+
       {error && (
         <p className="text-red-500 text-center">{error}</p>
       )}
 
-      {/* Empty State */}
       {!loading && staff.length === 0 && (
         <p className="text-gray-500 text-center">
           No staff members added yet.
         </p>
       )}
 
-      {/* Team Grid */}
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
         {staff.map((member) => (
           <div
             key={member._id}
             className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition duration-300"
           >
-            {/* Profile Image */}
             <div className="flex justify-center">
               <img
                 src={
                   member.image
-                    ? `${BASE_URL}${member.image}`
+                    ? member.image
                     : "https://randomuser.me/api/portraits/lego/1.jpg"
                 }
                 alt={member.name}
@@ -141,7 +134,6 @@ const Team = () => {
               />
             </div>
 
-            {/* Info */}
             <div className="text-center mt-4">
               <h3 className="font-semibold text-lg">
                 {member.name}
@@ -151,13 +143,11 @@ const Team = () => {
               </p>
             </div>
 
-            {/* Contact Icons */}
             <div className="flex justify-center gap-4 mt-4">
               <Phone size={18} className="text-gray-500" />
               <Mail size={18} className="text-gray-500" />
             </div>
 
-            {/* Status + Actions */}
             <div className="mt-5 flex flex-wrap justify-center items-center gap-3">
               <span
                 className={`px-3 py-1 text-xs rounded-full ${
@@ -187,7 +177,6 @@ const Team = () => {
         ))}
       </div>
 
-      {/* Modal */}
       <AddStaffModal
         show={showModal}
         onClose={() => {

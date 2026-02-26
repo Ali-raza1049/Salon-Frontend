@@ -1,10 +1,6 @@
-// src/components/booking/StylistStep.jsx
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchStaff } from "../../redux/slice/TeamSlice";
-import { BASE_URL } from "../../Api/utils";
-
-
 
 const StylistStep = ({ nextStep, prevStep, updateData, selected }) => {
   const dispatch = useDispatch();
@@ -42,7 +38,7 @@ const StylistStep = ({ nextStep, prevStep, updateData, selected }) => {
               <img
                 src={
                   stylist.image
-                    ? `${BASE_URL}${stylist.image}`
+                    ? stylist.image
                     : "https://randomuser.me/api/portraits/lego/1.jpg"
                 }
                 alt={stylist.name}
@@ -69,7 +65,11 @@ const StylistStep = ({ nextStep, prevStep, updateData, selected }) => {
           disabled={!selected}
           onClick={nextStep}
           className={`px-6 py-2 rounded-full font-semibold
-            ${selected ? "bg-pink-500 text-white" : "bg-gray-200 text-gray-400"}`}
+            ${
+              selected
+                ? "bg-pink-500 text-white"
+                : "bg-gray-200 text-gray-400"
+            }`}
         >
           Next →
         </button>
